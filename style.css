@@ -17,15 +17,33 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 3;
+    background-color: #ffffff;
 }
+
+/* .header-wrapper::after{
+   
+    content: "";
+    background-image: url(./assets/images/sketch.png);
+    background-size: 50% 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    z-index: 1;
+    background-color: red;
+} */
 
 .header {
     width: 85%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     font-family: 'poppins', sans-serif !important;
     font-size: 13px;
     font-weight: 700;
@@ -82,15 +100,14 @@ body {
 .carousal::before {
     content: "";
     background-image: url(./assets/images/after.png);
-    background-size: 50% 100%;
+    background-size: 40% 100%;
     position: absolute;
-    top: -80px;
+    top: -60px;
     left: 0;
     width: 100%;
     height: 100px;
     z-index: 1;
     background-color: transparent;
-    /* background-color: red; */
 }
 
 .carousal::after {
@@ -107,11 +124,17 @@ body {
     /* background-color: red; */
 }
 
+.carousal-wrapper {
+    padding-top: 80px;
+
+}
+
 .carousal {
     background-image: url(./assets/images/slider-1.jpg);
     background-size: cover;
     padding-bottom: 140px;
     position: relative;
+
 }
 
 .carousal-btn {
@@ -121,6 +144,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 1
 }
 
 .carousal-btn button {
@@ -133,6 +157,43 @@ body {
     color: #ffffff;
     width: 40%;
     padding: 100px;
+    /* opacity: 0; /* Start hidden */
+    /* animation: fadeIn 2s ease-in-out forwards; */
+
+}
+
+
+.logo-img .heading, .paragraph, .icons-container{
+    opacity: 0;
+}
+.logo-img {
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+.heading {
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+.paragraph {
+    animation: fadeIn 2s ease-in-out forwards;
+    animation-delay: 2s; /* 1 second delay */
+}
+
+.icons-container {
+    animation: fadeIn 2s ease-in-out forwards;
+    animation-delay: 3s; /* 2 seconds delay */
+}
+/* .logo{
+    animation: fadeIn 2s ease-in-out forwards;
+
+} */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .carousal-wrapper .carousal-content h2 {
@@ -141,7 +202,6 @@ body {
     font-size: 74px;
     margin-bottom: 20px;
 }
-
 .carousal-wrapper .carousal-content p {
     font-family: 'poppins', sans-serif !important;
     font-size: 24px;
@@ -152,6 +212,12 @@ body {
 .carousal-wrapper .carousal-content .icons-container {
     display: flex;
     gap: 20px;
+}
+
+.carousal-wrapper .carousal-content .logo-img {
+    width: 30%;
+
+
 }
 
 .carousal-wrapper .carousal-content .icon-img {
@@ -202,16 +268,6 @@ body {
     font-size: 14px;
 }
 
-/* .bg-food-menu::after{
-    content: "";
-    background-image: url(./assets/images/section-4-banner.jpg);
-    width: 100%;
-    height: 100px;
-    z-index: -1;
-    padding: 150px;
-    background-size: 200% 100px;
-    background-repeat: no-repeat;
-} */
 .food-menu {
     margin-top: 30px;
     border-top: 1px solid gainsboro;
@@ -393,8 +449,6 @@ body {
 .section-5-wrapper .section-5-flex {
     width: 90%;
     display: flex;
-    /* align-items: center !important;
-    justify-content: center !important; */
     margin: 0 auto;
     padding-left: 60px;
 
@@ -441,7 +495,7 @@ body {
 .desert-menu::before {
     content: "";
     background-image: url(./assets/images/section-3-banner.jpg);
-    background-size: 85% 140%;
+    background-size: 89% 138%;
     background-repeat: no-repeat;
     width: 100%;
     padding: 100px;
@@ -895,23 +949,80 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
+    position: relative;
 }
 
 .footer-warpper .footer-flex .social-icons .facebook {
     width: 5%;
 }
 
+.footer-warpper .footer-flex .social-icons .color-facebook {
+    width: 13%;
+}
+
+.footer-warpper .footer-flex .social-icons .color-facebook {
+    position: absolute;
+    top: -5px;
+    left: 56px;
+    opacity: 0;
+    transition: all .3s;
+
+}
+
+.footer-warpper .footer-flex .social-icons .color-facebook:hover {
+    opacity: 1;
+}
+
 .footer-warpper .footer-flex .social-icons .twitter {
     width: 8%;
+}
+
+.footer-warpper .footer-flex .social-icons .color-twitter {
+    width: 13%;
+}
+
+.footer-warpper .footer-flex .social-icons .color-twitter {
+    position: absolute;
+    top: -5px;
+    left: 93px;
+    opacity: 0;
+    transition: all .3s ease;
+
 }
 
 .footer-warpper .footer-flex .social-icons .utube {
     width: 8%;
 }
 
+.footer-warpper .footer-flex .social-icons .color-utube {
+    width: 12%;
+}
+
+.footer-warpper .footer-flex .social-icons .color-utube {
+    position: absolute;
+    top: -4px;
+    left: 136px;
+    opacity: 0;
+    transition: all .3s ease;
+
+}
+
 .footer-warpper .footer-flex .social-icons .mail {
     width: 8%;
 }
+
+.footer-warpper .footer-flex .social-icons .color-mail {
+    width: 14%;
+}
+
+.footer-warpper .footer-flex .social-icons .color-mail {
+    position: absolute;
+    top: -5px;
+    left: 176px;
+    opacity: 0;
+    transition: all .3s ease;
+}
+
 
 .copyright-wrapper-bg {
     background-image: url(./assets/images/footer-bg.jpg);
@@ -976,6 +1087,37 @@ body {
     background-color: black;
     color: white;
 }
+
+.footer-warpper .footer-flex .social-icons .color-facebook:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    cursor: pointer;
+}
+
+.footer-warpper .footer-flex .social-icons .color-twitter:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    cursor: pointer;
+}
+
+.footer-warpper .footer-flex .social-icons .color-utube:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    cursor: pointer;
+}
+
+.footer-warpper .footer-flex .social-icons .color-mail:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    cursor: pointer;
+}
+
+.chef-wrapper .chef-flex-container .chef-img img:hover {
+    width: 98%;
+    height: 220px;
+
+}
+
 
 
 
@@ -1139,6 +1281,38 @@ body {
         width: 70%;
     }
 
+    .toggle-links.mobile-dropdown {
+        display: block;
+        width: 100%;
+        background: white;
+        padding-bottom: 30px;
+        z-index: 1;
+    }
+
+    .toggle-links.mobile-dropdown ul {
+        list-style: none;
+        padding: 0px 40px;
+    }
+
+    .toggle-links.mobile-dropdown ul li {
+        border-bottom: 1px solid #eee;
+    }
+
+    .toggle-links.mobile-dropdown ul li:last-child {
+        border-bottom: 0px solid #eee;
+    }
+
+    .toggle-links.mobile-dropdown ul li a {
+        color: black;
+        text-decoration: none;
+        padding: 10px 0px;
+        display: block;
+    }
+
+    .toggle-links.mobile-dropdown.closed-menu {
+        display: none;
+    }
+
 }
 
 /* @media (max-width:756) {
@@ -1156,9 +1330,9 @@ body {
 } */
 
 @media (max-width:556px) {
-    .carousal-wrapper::before {
+    /* .carousal-wrapper::before {
         display: none;
-    }
+    } */
 
     .carousal-wrapper .carousal-content h2 {
         font-size: 30px;
@@ -1200,21 +1374,73 @@ body {
     .desert-menu .desert-menu-buttons {
         grid-template-columns: 1fr 1fr;
     }
-    .desert-menu{
+
+    .desert-menu {
         border-top: none;
     }
-    .desert-menu::before{
+
+    .desert-menu::before {
         background-size: 98% 142%;
         width: 64%;
         background-position: center;
     }
+
     .services-wrapper .services-images .service-img-2 img {
         display: none;
     }
+
     .services-wrapper .services-images .service-img-1 img {
         width: 100%;
     }
+
     .services-wrapper .services {
         margin: 0 20px;
     }
+
+    .chef-wrapper .chef-flex-container {
+        grid-template-columns: 1fr;
+        margin: 0;
+        width: 100%;
+    }
+
+    .news-flex-container {
+        grid-template-columns: 1fr;
+        margin: 0;
+        width: 97%;
+
+    }
+
+    .news-feed-content::before {
+        width: 79%;
+    }
+
+    .footer-warpper {
+        grid-template-columns: 1fr;
+
+    }
+
+    .copyright-wrapper {
+        flex-direction: column;
+    }
+
+    .services-wrapper .services-images .service-btn {
+        left: 0;
+        top: 334px;
+    }
+}
+
+@media (max-width:375px) {
+    .copyright-wrapper-bg .footer-description p {
+        font-size: 12px;
+    }
+
+    .copyright-wrapper-bg .footer-nav a {
+        font-size: 12px;
+    }
+
+    .news-feed-content::before {
+        width: 62%;
+        background-size: 87% 171%;
+    }
+
 }

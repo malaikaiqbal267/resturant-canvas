@@ -40,56 +40,62 @@ const carousal = [
 let background = document.querySelector(".carousel-container");
 let previousBtn = document.querySelector(".previous-btn");
 let nextBtn = document.querySelector(".next-btn");
-let fade;
 let count = 0;
+let interval;
 
-const singleCarousel = (item) => {
-  // console.log("item", item);
+const singleCarousel = (item, index) => {
+
   const carousalElement = `
-        <div class="carousal" style="background-image: url(${
-          item?.background
-        }) !important;">
-        
-          <div class="carousal-content ${item.id === 2 ? "centered" : ""}">
-              <h2 class="heading">${item?.title}</h2>
-              <p class="paragraph">
-              ${item?.paragraph}
-              </p>
-              <div class="icons-container">
-                ${
-                  item?.icon &&
-                  item?.icon
-                    .map((row) => `<img class="icon-img" src="${row}" />`)
-                    .join("")
-                }
-              </div>
-          </div>
+    <div class="carousal" style="background-image: url(${item?.background}) !important;">
+      <div class="carousal-content ${item.id === 2 ? "centered" : ""}">
+        ${item.logo ? `<img class="logo-img" src="${item.logo}" />` : ""}
+        <h2 class="heading">${item?.title}</h2>
+        <p class="paragraph">
+          ${item?.paragraph}
+        </p>
+        <div class="icons-container">
+          ${
+            item?.icon &&
+            item?.icon
+              .map((row) => `<img class="icon-img" src="${row}" />`)
+              .join("")
+          }
+        </div>
+      </div>
     </div>`;
-
   background.innerHTML = carousalElement;
 };
 
+const startAutoplay = () => {
+  interval = setInterval(() => {
+    count = (count + 1) % carousal.length;
+    singleCarousel(carousal[count]);
+  }, 5000);
+};
+
+const stopAutoplay = () => {
+  clearInterval(interval);
+};
+
 document.addEventListener("DOMContentLoaded", () => {
-  let singleObj = carousal[count];
-  singleCarousel(singleObj);
+  singleCarousel(carousal[count]);
+  startAutoplay();
 });
 
-previousBtn.addEventListener("click", function () {
-  count--;
-  if (count < 0) {
-    count = 2;
-  }
-  let singleObj = carousal[count];
-  singleCarousel(singleObj);
+previousBtn.addEventListener("click", () => {
+  stopAutoplay();
+  count = (count - 1 + carousal.length) % carousal.length;
+  singleCarousel(carousal[count]);
+  startAutoplay();
 });
-nextBtn.addEventListener("click", function () {
-  count++;
-  if (count > 2) {
-    count = 0;
-  }
-  let singleObj = carousal[count];
-  singleCarousel(singleObj);
+
+nextBtn.addEventListener("click", () => {
+  stopAutoplay();
+  count = (count + 1) % carousal.length;
+  singleCarousel(carousal[count]);
+  startAutoplay();
 });
+
 const foodItem = [
   {
     id: 1,
@@ -336,4 +342,11 @@ const desertBuild = (sweetBuilds) =>{
   document.querySelector('.desert-description p').innerText = sweetBuilds.desertDescription;
 }
 
-   
+document.addEventListener("DOMContentLoaded", function() {
+  var toggleBtn = document.querySelector('.toggle-btn');
+  var dropdown = document.querySelector('.mobile-dropdown');
+  
+  toggleBtn.addEventListener('click', function() {
+      dropdown.classList.toggle('closed-menu');
+  });
+});
